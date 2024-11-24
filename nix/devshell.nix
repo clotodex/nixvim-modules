@@ -43,7 +43,7 @@
       packages = [config.packages.default];
 
       enterShell = ''
-        hello
+        echo "Use 'nvim' to start nixvim"
       '';
     };
   };
