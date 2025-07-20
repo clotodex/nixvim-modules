@@ -2,21 +2,20 @@
   lib,
   pkgs,
   ...
-}: {
+}:
+{
   plugins = {
-    nvim-jdtls = {
+    jdtls = {
       enable = true;
-      data = "~/.cache/jdtls/workspace";
-      cmd = [
+      #data = "~/.cache/jdtls/workspace";
+      settings.cmd = [
         "${lib.getExe pkgs.jdt-language-server}"
       ];
     };
     lsp = {
       enable = true;
       preConfig =
-        /*
-        lua
-        */
+        # lua
         ''
           local lsp_symbol = function(name, icon)
           vim.fn.sign_define(
@@ -40,7 +39,10 @@
         nil_ls = {
           enable = true;
           settings = {
-            formatting.command = [(lib.getExe pkgs.alejandra) "--quiet"];
+            formatting.command = [
+              (lib.getExe pkgs.nixfmt-rfc-style)
+              "--quiet"
+            ];
           };
         };
         nixd.enable = true;
@@ -72,7 +74,6 @@
           protolint.enable = true;
         };
         formatting = {
-          alejandra.enable = true;
           markdownlint.enable = true;
           sqlfluff.enable = true;
           shfmt.enable = true;
@@ -80,12 +81,8 @@
       };
     };
 
-    dap = {
-      enable = true;
-      extensions = {
-        dap-virtual-text.enable = true;
-        dap-ui.enable = true;
-      };
-    };
+    dap-virtual-text.enable = true;
+    dap-ui.enable = true;
+    dap.enable = true;
   };
 }

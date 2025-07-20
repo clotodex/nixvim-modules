@@ -6,6 +6,7 @@
 # TODO move lines. gomove again?
 # TODO vim-wordmotion vs https://github.com/chrisgrieser/nvim-various-textobjs
 # TODO blankline cur indent too bright
+
 # TODO: clotodex plugins
 # - lspkind
 #	"nvim-lua/popup.nvim",
@@ -18,6 +19,7 @@
 #	--{ "TimUntersberger/neogit", config = conf_setup "neogit" },
 #	-- path completion source
 #	"ray-x/lsp_signature.nvim",
+
 {
   imports = [
     ./alpha.nix
@@ -32,8 +34,6 @@
     ./onedark.nix
     ./web-devicons.nix
   ];
-  # TODO: home.sessionVariables.EDITOR = "nvim";
-  # TODO: home.shellAliases.vimdiff = "nvim -d";
 
   # TODO for wayland:
   # clipboard.providers.wl-copy.enable = true;
@@ -77,7 +77,7 @@
     }
   ];
 
-  # TODO split into files
+  # TODO: split into files
   keymaps = let
     keymap = mode: key: action: desc: {
       inherit action key mode;
@@ -97,9 +97,9 @@
     (keymap ["i"] "<S-Down>" "<C-x><C-e>" "")
     (keymap ["i"] "<S-Up>" "<C-x><C-y>" "")
 
-    (keymap ["n"] "<A-Up>" ":wincmd k<CR>" "")
-    (keymap ["n"] "<A-Down>" ":wincmd j<CR>" "")
-    (keymap ["n"] "<A-Left>" ":wincmd h<CR>" "")
+    (keymap ["n"] "<A-Up>"    ":wincmd k<CR>" "")
+    (keymap ["n"] "<A-Down>"  ":wincmd j<CR>" "")
+    (keymap ["n"] "<A-Left>"  ":wincmd h<CR>" "")
     (keymap ["n"] "<A-Right>" ":wincmd l<CR>" "")
 
     # Shift + Alt + <arrow keys> change the current window size
@@ -242,5 +242,22 @@
     (keymap ["n"] "<leader>cP" "<cmd>lua require('textcase').lsp_rename('to_pascal_case')<CR><right>" "LSP Rename: To PascalCase")
     (keymap ["n"] "<leader>cT" "<cmd>lua require('textcase').lsp_rename('to_title_case')<CR><right>" "LSP Rename: To Title Case")
     (keymap ["n"] "<leader>cF" "<cmd>lua require('textcase').lsp_rename('to_path_case')<CR><right>" "LSP Rename: To path/case")
+
+    # -------------------------------------------------------------------------------------------------
+    # Plugin: trouble
+    # -------------------------------------------------------------------------------------------------
+
+    (keymap ["n"] "<leader>xx" "<cmd>Trouble diagnostics toggle<cr>" "Diagnostics (Trouble)")
+    (keymap ["n"] "<leader>xX" "<cmd>Trouble diagnostics toggle filter.buf=0<cr>" "Buffer Diagnostics (Trouble)")
+    (keymap ["n"] "<leader>cs" "<cmd>Trouble symbols toggle focus=false<cr>" "Symbols (Trouble)")
+    (keymap ["n"] "<leader>cl" "<cmd>Trouble lsp toggle focus=false win.position=right<cr>" "LSP Definitions / references / ... (Trouble)")
+    (keymap ["n"] "<leader>xL" "<cmd>Trouble loclist toggle<cr>" "Location List (Trouble)")
+    (keymap ["n"] "<leader>xQ" "<cmd>Trouble qflist toggle<cr>" "Quickfix List (Trouble)")
+
+    # -------------------------------------------------------------------------------------------------
+    # Plugin: Oil
+    # -------------------------------------------------------------------------------------------------
+
+    (keymap ["n"] "-" "<cmd>Oil<cr>" "Launch Oil Fileviewer")
   ];
 }

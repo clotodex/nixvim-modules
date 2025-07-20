@@ -1,8 +1,4 @@
 {inputs, ...}: {
-  imports = [
-    inputs.devenv.flakeModule
-  ];
-
   perSystem = {
     config,
     self',
@@ -37,14 +33,6 @@
     packages = {
       # Lets you run `nix run .` to start nixvim
       default = nvim;
-    };
-    devenv.shells.default = {
-      # https://devenv.sh/reference/options/
-      packages = [config.packages.default];
-
-      enterShell = ''
-        echo "Use 'nvim' to start nixvim"
-      '';
     };
   };
 }

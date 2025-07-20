@@ -1,23 +1,24 @@
-{pkgs, ...}: {
-  # home.packages = [
-  #   pkgs.ctags
-  # ];
+{ pkgs, ... }:
+{
+  #home.packages = [
+  #  pkgs.ctags
+  #];
 
   plugins = {
     notify = {
       enable = true;
-      stages = "static";
-      render.__raw =
-        /*
-        lua
-        */
-        ''"compact"'';
-      icons = {
-        debug = "";
-        error = "󰅙";
-        info = "";
-        trace = "󰰥";
-        warn = "";
+      settings = {
+        stages = "static";
+        render.__raw =
+          # lua
+          ''"compact"'';
+        icons = {
+          debug = "";
+          error = "󰅙";
+          info = "";
+          trace = "󰰥";
+          warn = "";
+        };
       };
     };
 
@@ -29,12 +30,15 @@
     # Fzf picker for arbitrary stuff
     telescope = {
       enable = true;
-      enabledExtensions = ["fzf" "notify" "ui-select" "textcase"];
+      enabledExtensions = [
+        "fzf"
+        "notify"
+        "ui-select"
+        "textcase"
+      ];
       extensions.fzf-native.enable = true;
       settings.defaults.mappings.i."<esc>".__raw =
-        /*
-        lua
-        */
+        # lua
         ''
           function(...)
             return require("telescope.actions").close(...)
@@ -57,6 +61,10 @@
     todo-comments.enable = true;
     # TODO use { "liuchengxu/vista.vim", cmd = "Vista" }
     which-key.enable = true;
+
+    # filesystem in buffer
+    oil.enable = true;
+
   };
 
   extraPlugins = with pkgs.vimPlugins; [
@@ -95,9 +103,7 @@
   ];
 
   extraConfigLuaPre =
-    /*
-    lua
-    */
+    # lua
     ''
       vim.g.operator_sandwich_no_default_key_mappings = 1
       vim.g.textobj_sandwich_no_default_key_mappings = 1
@@ -106,9 +112,7 @@
     '';
 
   extraConfigLuaPost =
-    /*
-    lua
-    */
+    # lua
     ''
       require("window-picker").setup {
         hint = "floating-big-letter",

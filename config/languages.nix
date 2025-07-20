@@ -1,4 +1,5 @@
-{pkgs, ...}: {
+{ pkgs, ... }:
+{
   files."ftplugin/nix.lua".extraConfigLua = ''
     vim.opt_local.expandtab = true
     vim.opt_local.tabstop = 2
@@ -27,32 +28,42 @@
     };
 
     # Cargo.toml dependency completion
-    crates-nvim = {
+    crates = {
       enable = true;
-      extraOptions = {
+      settings = {
         completion.cmp.enabled = true;
       };
+    };
+
+    render-markdown = {
+      enable = true;
+      settings.file_types = [
+        "markdown"
+        "Avante"
+      ];
     };
 
     rustaceanvim = {
       enable = true;
       settings = {
-        server.default_settings.files.excludeDirs = [".direnv"];
+        server.default_settings.files.excludeDirs = [ ".direnv" ];
         dap.autoloadConfigurations = true;
-        dap.adapter = let
-          code-lldb = pkgs.vscode-extensions.vadimcn.vscode-lldb;
-        in {
-          executable.command = "${code-lldb}/share/vscode/extensions/vadimcn.vscode-lldb/adapter/codelldb";
-          executable.args = [
-            "--liblldb"
-            "${code-lldb}/share/vscode/extensions/vadimcn.vscode-lldb/lldb/lib/liblldb.dylib"
-            "--port"
-            "31337"
-          ];
-          type = "server";
-          port = "31337";
-          host = "127.0.0.1";
-        };
+        dap.adapter =
+          let
+            code-lldb = pkgs.vscode-extensions.vadimcn.vscode-lldb;
+          in
+          {
+            executable.command = "${code-lldb}/share/vscode/extensions/vadimcn.vscode-lldb/adapter/codelldb";
+            executable.args = [
+              "--liblldb"
+              "${code-lldb}/share/vscode/extensions/vadimcn.vscode-lldb/lldb/lib/liblldb.dylib"
+              "--port"
+              "31337"
+            ];
+            type = "server";
+            port = "31337";
+            host = "127.0.0.1";
+          };
       };
     };
   };
