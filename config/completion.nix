@@ -11,7 +11,7 @@
     #};
 
     copilot-lua = {
-      enable = true;
+      enable = false;
       settings = {
         filetypes = {
           markdown = true;
@@ -34,7 +34,7 @@
     #copilot-chat.enable = true;
 
     avante = {
-      enable = true;
+      enable = false;
       settings = {
         provider = "copilot";
         auto_suggestions_frequency = "copilot";
