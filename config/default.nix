@@ -38,6 +38,8 @@
   # TODO for wayland:
   # clipboard.providers.wl-copy.enable = true;
 
+  wrapRc = true;
+
   luaLoader.enable = true;
   globals.mapleader = ",";
 
