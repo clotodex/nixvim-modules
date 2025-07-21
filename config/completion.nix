@@ -66,7 +66,7 @@
     };
 
     codecompanion = {
-      enable = true;
+      enable = false;
       settings.strategies = {
         chat = {
           adapter = "copilot";
@@ -84,7 +84,7 @@
       enable = true;
     };
 
-    blink-copilot.enable = true;
+    blink-copilot.enable = false;
     blink-cmp = {
       enable = true;
       settings = {
